@@ -1,16 +1,29 @@
 
 # coding: utf-8
 
-# In[1]:
+# In[ ]:
 
 import numpy as np
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 import matplotlib.ticker as mticker
-import sympy as sp
-from sympy import *
-
 from scipy.interpolate import interp1d
+import vplot as vpl
+import sys
+
+"""
+
+# Check correct number of arguments
+if (len(sys.argv) != 2):
+    print('ERROR: Incorrect number of arguments.')
+    print('Usage: '+sys.argv[0]+' <pdf | png>')
+    exit(1)
+if (sys.argv[1] != 'pdf' and sys.argv[1] != 'png'):
+    print('ERROR: Unknown file format: '+sys.argv[1])
+    print('Options are: pdf, png')
+    exit(1)
+
+"""
 
 #Typical plot parameters that make for pretty plots
 mpl.rcParams['figure.figsize'] = (18,15)
@@ -19,24 +32,15 @@ mpl.rcParams['font.size'] = 22.0
 fig, axes = plt.subplots(ncols=1, nrows=1, sharey=False)
 fig.set_size_inches(21,12)
 
-# Each line gets it own color
-colores = ["C" + str(n) for n in range(6)]
-
-
-# In[2]:
-
 # 1D Interpolations to Baraffe et al., 2015 stellar models
-#baraffe2015MArr = np.array([0.1, 0.11, 0.13, 0.15, 0.17, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.1])
 baraffe2015MArr = np.array([0.1, 0.11, 0.13, 0.15, 0.17, 0.2, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0, 1.1])
 
 
 # Teff at 4.5e9 yr old
-#baraffe2015TeffMSArr = np.array([2811, 2916, 3046, 3131, 3192, 3262, 3416, 3521, 3681, 3981, 4424, 4887, 5310, 5713, 5997])
 baraffe2015TeffMSArr = np.array([2811, 2916, 3046, 3131, 3192, 3262, 3521, 3981, 4424, 4887, 5310, 5713, 5997])
 
 
 # L/Lsun at 4.5e9 yr old
-#baraffe2015LMSArr = np.power(10,np.array([-3.062, -2.924, -2.727, -2.58, -2.462, -2.317, -1.964, -1.707, -1.446, -1.148, -.841, -.553, -.281, -.011, .253]))
 baraffe2015LMSArr = np.power(10,np.array([-3.062, -2.924, -2.727, -2.58, -2.462, -2.317, -1.707, -1.148, -.841, -.553, -.281, -.011, .253]))
 
 # 1D interpolation to build functions that takes stellar mass in Msun as
@@ -63,7 +67,6 @@ L = fLMS(some_mass_values)
 # 
 # Where $\mu = .5$ for equal-mass stars, e will range, and $a_{star}$ depends on kepler's third law with $P_{orb} = 7.5 days$
 
-# In[3]:
 
 """rg = runaway greenhouse, mg = maximum greenhouse, S = effective stellar flux, T = temperature"""
 S_rg = 1.0512
@@ -131,29 +134,40 @@ def k3(M1, M2, P):
         print("Güey, did you check to see if len(M1) == len(M2)??")
     return a
 
-
+#Defining the a_crit values for each eccentricity 
 semi_major_axis = k3(some_mass_values, some_mass_values, 7.5) #Equal-mass stars with 7.5 day orbital period
 min_a_crit = holman_wiegert_a_crit(.5, 0, semi_major_axis) #a_crit at e = 0.0
 a_crit_e_pt1 = holman_wiegert_a_crit(.5, .1, semi_major_axis) #a_crit at e = 0.1
 a_crit_e_pt3 = holman_wiegert_a_crit(.5, .3, semi_major_axis) #a_crit at e = 0.3
 a_crit_e_pt5 = holman_wiegert_a_crit(.5, .5, semi_major_axis) #a_crit at e = 0.5
 
-axes.plot(hz_cbp_rg, some_mass_values, lw=5, color = colores[2], ls = "-") #Plots inner edge of hz
-axes.plot(hz_cbp_mg, some_mass_values, lw=5, color = colores[2], ls = "-") #Plots outer edge of hz
-axes.fill_between(hz_cbp_rg, 0, some_mass_values, 
-                  color = colores[2], alpha = .5, label = "CBP Habitable Zone") # shades green in hz boundaries
-axes.fill_between(hz_cbp_mg, 0, some_mass_values, 
-                  color = "white") #Prevents green from appearing father from outer hz boundary
-axes.plot(min_a_crit, some_mass_values, lw=3, 
-          color = "black", ls = "--", 
-          label = ("Min possible " + r"$a_{crit}$" + " " + r"$(e_{star} = 0)$"))
-axes.plot(a_crit_e_pt1, some_mass_values, lw=3, color = colores[0], 
-          ls= "--", label = r"$e_{star} = 0.1$") #Plots a_crit boundary for e = 0.1
-axes.plot(a_crit_e_pt3, some_mass_values, lw=3, color = colores[1], 
-          ls= "--", label = r"$e_{star} = 0.3$") #Plots a_crit boundary for e = 0.3
-axes.plot(a_crit_e_pt5, some_mass_values, lw=3, color = colores[3], 
-          ls= "--", label = r"$e_{star} = 0.5$") #Plots a_crit boundary for e = 0.5
+#Assigning colors to the habitable zone and the a_crit values
+hz_color = vpl.colors.pale_blue
+a_crit0_color = "k"
+a_crit1_color = vpl.colors.purple
+a_crit3_color = vpl.colors.orange
+a_crit5_color = vpl.colors.red
 
+##Plotting the a_crit values for each binary eccentricity##
+axes.plot(min_a_crit, some_mass_values, lw=3, 
+          color = a_crit0_color, ls = "--", 
+          label = ("Min possible " + r"$a_{crit}$" + " " + r"$(e_{star} = 0)$"), zorder = 3)
+axes.plot(a_crit_e_pt1, some_mass_values, lw=3, color = a_crit1_color, 
+          ls= "--", label = r"$a_{crit}$" + " " + r"$(e_{star} = 0.1)$", zorder = 3) #Plots a_crit boundary for e = 0.1
+axes.plot(a_crit_e_pt3, some_mass_values, lw=3, color = a_crit3_color, 
+          ls= "--", label = r"$a_{crit}$" + " " + r"$(e_{star} = 0.3)$", zorder = 3) #Plots a_crit boundary for e = 0.3
+axes.plot(a_crit_e_pt5, some_mass_values, lw=3, color = a_crit5_color, 
+          ls= "--", label = r"$a_{crit}$" + " " + r"($e_{star} = 0.5)$", zorder = 3) #Plots a_crit boundary for e = 0.5
+
+##Plotting the habitable zone##
+axes.plot(hz_cbp_rg, some_mass_values, lw=5, color = hz_color, ls = "-", zorder = 2) #Plots inner edge of hz
+axes.plot(hz_cbp_mg, some_mass_values, lw=5, color = hz_color, ls = "-", zorder = 2) #Plots outer edge of hz
+axes.fill_between(hz_cbp_rg, 0, some_mass_values, #where = hz_cbp_rg >= hz_cbp_mg,
+                  color = hz_color, alpha = .5, label = "CBP Habitable Zone", zorder = 1) # shades green in hz boundaries
+axes.fill_between(hz_cbp_mg, 0, some_mass_values, 
+                  color = "white", zorder = 1) #Prevents HZ color from appearing father from outer hz boundary
+
+#Formatting
 axes.set_title("Stellar Orbital Period = " + r"$7.5$" + " " + r"$days$", size = 42, y = 1.05)
 axes.set_xscale("log")
 axes.set_xlabel(r"$log_{10}$(semi-major axis)" + " [AU] ", size = 34)
@@ -165,5 +179,10 @@ axes.set_xlim(xmin= 0.1, xmax = 0.4)
 axes.set_ylim(ymin=0.1, ymax = 0.6)
 axes.set_ylabel("Solar Masses " + r"$[M / M_{\odot}]$", size = 34)
 axes.legend(loc = "upper left")
+
 fig.tight_layout()
-fig.savefig("HZ_CBP" + ".png", bbox_inches="tight")
+if (sys.argv[1] == 'pdf'):
+    plt.savefig('HZ_CBP_colorblind_proof.pdf', bbox_inches="tight")
+if (sys.argv[1] == 'png'):
+    plt.savefig('HZ_CBP_colorblind_proof.png', bbox_inches="tight")
+

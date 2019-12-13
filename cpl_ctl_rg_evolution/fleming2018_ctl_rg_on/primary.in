@@ -1,6 +1,7 @@
-# The host star: Kepler 16A
+# The host star: SunLikeStar A
 # Parameters from Leung & Lee (2013)
 sName		primary		# Body's name
+sOutFile	fleming2018_ctl_rg_on.primary.forward
 saModules eqtide stellar
 #Place "binary" before "eqtide" to turn on cbp
 
@@ -8,15 +9,14 @@ saModules eqtide stellar
 iBodyType       1               # 1 -> Star
 dMass		1.0                # Mass, negative -> Earth masses
 dRotPeriod      -0.5            # Rotation period (-1 -> days)
-bEvolveRG       0
+bEvolveRG       1
 dRadGyra        0.27 
 
 # EQTIDE Parameters
-dTidalQ		1e6
-#dTidalTau		3.17e-9  # Tidal time lag
+dTidalTau         3.17e-9
 dK2		0.5		         # Love number of degree 2
 dMaxLockDiff    0.01
-sTideModel	p2		   # Tidal model, p2=CPL, t8=CTL
+sTideModel      t8		   # Tidal model, p2=CPL, t8=CTL
 saTidePerts	secondary	# Body name(s) of tidal perturbers
 
 # STELLAR Parameters

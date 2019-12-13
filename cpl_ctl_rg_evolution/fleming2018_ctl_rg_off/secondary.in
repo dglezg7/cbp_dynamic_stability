@@ -1,6 +1,7 @@
-# Secondary star: Kepler16B
+# Secondary star: SunLikeStar B
 # Parameters from Leung & Lee (2013)
 sName		secondary		# Body's name
+sOutFile	fleming2018_ctl_rg_off.secondary.forward
 saModules eqtide stellar
 #Place "binary" before "eqtide" to turn on cbp
 
@@ -19,8 +20,7 @@ dOrbPeriod	-4.0		#Binary Orbital Period Days
 #dLL13PhiAB      0.0            # Initial binary mean anomaly [deg]
 
 # EQTIDE Parameters
-dTidalQ		1e6
-#dTidalTau		3.17e-9  # Tidal time lag
+dTidalTau       3.17e-9
 dK2		0.5		# Love number of degree 2
 dMaxLockDiff    0.01
 saTidePerts	primary   	# Body name(s) of tidal perturbers

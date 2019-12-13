@@ -1,5 +1,5 @@
 # Primary input file for VPLANET
-sSystemName	kepler16		# System Name
+sSystemName	fleming2018_cpl_rg_off		# System Name
 iVerbose	5			# Verbosity level
 bOverwrite	1			# Allow file overwrites?
 
