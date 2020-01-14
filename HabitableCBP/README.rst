@@ -29,7 +29,7 @@ Running the script.
 Expected image
 -----
 
-.. figure:: habitable_cbp.png
+.. figure:: HabitableCBP.png
    :width: 600px
    :align: center
    Insolation and the orbital evolution the circumbinary planet. The parameters of the binary stars
