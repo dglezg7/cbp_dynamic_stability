@@ -48,7 +48,7 @@ baraffe2015LMSArr = np.power(10,np.array([-3.062, -2.924, -2.727, -2.58, -2.462,
 fTeffMS = interp1d(baraffe2015MArr, baraffe2015TeffMSArr, kind = "quadratic")
 fLMS = interp1d(baraffe2015MArr, baraffe2015LMSArr, kind = "quadratic")
 
-some_mass_values = np.arange(.1, 1.1, 1e-6) #Defined an array of solar mass values from 0.1 to 1.1 solar masses
+some_mass_values = np.arange(.1, 1.1, 1e-2) #Defined an array of solar mass values from 0.1 to 1.1 solar masses
 Teff = fTeffMS(some_mass_values)
 L = fLMS(some_mass_values)
 

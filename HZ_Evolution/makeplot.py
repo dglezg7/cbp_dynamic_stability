@@ -68,6 +68,7 @@ for sim in range(len(data)):
     axes[sim].set_ylabel("Semi-Major Axis [AU]", fontsize = 35)
     axes[sim].set_xticks([10**(i + 5) for i in range(6)])
     axes[sim].tick_params(axis = 'both', which = 'major', labelsize = 28, width=3, length=9)
+    axes[sim].set_rasterization_zorder(0) 
 
 axes[0].set_ylim(0.07, 0.24)
 axes[0].set_yticks([0.04*i + 0.08 for i in range(5)])
@@ -80,7 +81,6 @@ axes[0].legend(loc = "lower left")
 
 fig.tight_layout()
 if (sys.argv[1] == 'pdf'):
-    plt.savefig('HZ_Evolution.pdf', bbox_inches="tight")
+    plt.savefig('HZ_Evolution.pdf', bbox_inches="tight", dpi=200)
 if (sys.argv[1] == 'png'):
     plt.savefig('HZ_Evolution.png', bbox_inches="tight")
-

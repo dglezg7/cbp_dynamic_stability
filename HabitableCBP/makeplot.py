@@ -63,6 +63,7 @@ axes[0].set_xlim(1e+6, time.max())
 axes[0].set_ylim(ymin=0.45, ymax = 0.9)
 axes[0].set_ylabel("Instellation " + "[Earth Units]", fontsize = 35)
 axes[0].tick_params(axis = 'both', which = 'major', labelsize = 28, width=3, length=9)
+axes[0].set_rasterization_zorder(0) 
 
 ##Plotting the semi-major axis of the cbp and a_crit on the middle panel##
 axes[1].plot(time, a_cbp, lw=4, 
@@ -83,6 +84,7 @@ axes[1].set_ylim(0.157, 0.3)
 axes[1].set_ylabel("Semi-Major Axis [AU]", fontsize = 35)
 axes[1].set_yticks([0.02*i + 0.16 for i in range(8)])
 axes[1].tick_params(axis = 'both', which = 'major', labelsize = 28, width=3, length=9)
+axes[1].set_rasterization_zorder(0) 
 axes[1].legend(loc = "lower left")
 
 ##Plotting the free eccentricity of the cbp##
@@ -97,10 +99,11 @@ axes[2].set_xlim(1e+6, time.max())
 axes[2].set_ylim(0.037, 0.16)
 axes[2].set_ylabel("Eccentricity", fontsize = 35)
 axes[2].tick_params(axis = 'both', which = 'major', labelsize = 28, width=3, length=9)
+axes[2].set_rasterization_zorder(0) 
     
 fig.tight_layout()
 if (sys.argv[1] == 'pdf'):
-    plt.savefig('HabitableCBP.pdf', bbox_inches="tight")
+    plt.savefig('HabitableCBP.pdf', bbox_inches="tight", dpi=200)
 if (sys.argv[1] == 'png'):
     plt.savefig('HabitableCBP.png', bbox_inches="tight")
 

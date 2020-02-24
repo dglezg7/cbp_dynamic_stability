@@ -87,6 +87,7 @@ axes[0,0].set_xlim(1e+6, time.max())
 axes[0,0].set_ylim(.0819, .0852)
 axes[0,0].set_ylabel("Star Semi-Major axis [AU]")
 axes[0,0].tick_params(axis = 'both', which = 'major', labelsize = 24, width=1.5, length=4)
+axes[0,0].set_rasterization_zorder(0) 
 
 ##Plotting the simulated and observed semi-major axis of the cbp on the top-right panel##
 axes[0,1].plot(time, a_cbp, lw=3, 
@@ -106,6 +107,7 @@ axes[0,1].set_xlim(1e+6, time.max())
 axes[0,1].set_ylim(0.195, 0.32)
 axes[0,1].set_ylabel("CBP Semi-Major Axis [AU]")
 axes[0,1].tick_params(axis = 'both', which = 'major', labelsize = 24, width=1.5, length=4)
+axes[0,1].set_rasterization_zorder(0) 
 axes[0,1].legend(loc = (0.01, 0.31))
 
 ##Plotting the simulated and observed binary eccentricity of the star on the bottom-left panel##
@@ -123,6 +125,7 @@ axes[1,0].set_xlim(1e+6, time.max())
 axes[1,0].set_ylim(0.01, 0.11)
 axes[1,0].set_ylabel("Binary Eccentricity")
 axes[1,0].tick_params(axis = 'both', which = 'major', labelsize = 24, width=1.5, length=4)
+axes[1,0].set_rasterization_zorder(0) 
 axes[1,0].legend(loc = "center left")
 
 ##Plotting the simulated and observed free eccentricity of the cbp on the bottom-right panel##
@@ -140,10 +143,11 @@ axes[1,1].set_xlim(1e+6, time.max())
 axes[1,1].set_ylim(-0.002, 0.08)
 axes[1,1].set_ylabel("CBP Eccentricity")
 axes[1,1].tick_params(axis = 'both', which = 'major', labelsize = 24, width=1.5, length=4)
+axes[1,1].set_rasterization_zorder(0) 
  
 fig.tight_layout()
 if (sys.argv[1] == 'pdf'):
-    plt.savefig('kepler-47b.pdf', bbox_inches="tight")
+    plt.savefig('kepler-47b.pdf', bbox_inches="tight", dpi=200)
 if (sys.argv[1] == 'png'):
     plt.savefig('kepler-47b.png', bbox_inches="tight")
 

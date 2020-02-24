@@ -91,6 +91,7 @@ for i in range(3):
     axes[i].set_xlabel("Time [yr]", size = 35)
     axes[i].set_xlim(1e+5, time.max())
     axes[i].tick_params(axis = 'both', which = 'major', labelsize = 35, width=3, length=9)
+    axes[i].set_rasterization_zorder(0) 
     
 #Formats that are unique to each plot
 
@@ -111,7 +112,7 @@ axes[2].set_ylim(ymin=-0.01 ,ymax=0.32)
 
 fig.tight_layout()
 if (sys.argv[1] == 'pdf'):
-    plt.savefig('STEEP_CTL.pdf', bbox_inches="tight")
+    plt.savefig('STEEP_CTL.pdf', bbox_inches="tight", dpi=200)
 if (sys.argv[1] == 'png'):
     plt.savefig('STEEP_CTL.png', bbox_inches="tight")
 
