@@ -30,7 +30,7 @@ In each ``StellarMass`` folder, run the following:
 
     vplanet vpl.in
 
-Then in the ``STEEP_CTL`` folder run:  
+Then in the ``HZ_Evolution`` folder run:  
 
 .. code-block:: bash
 
