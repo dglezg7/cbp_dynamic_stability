@@ -26,7 +26,7 @@ if (sys.argv[1] != 'pdf' and sys.argv[1] != 'png'):
 """
 
 #Typical plot parameters that make for pretty plots
-mpl.rcParams['figure.figsize'] = (18,15)
+mpl.rcParams['figure.figsize'] = (9,7.5) #It was originally (18,15)
 mpl.rcParams['font.size'] = 22.0
 
 fig, axes = plt.subplots(ncols=1, nrows=1, sharey=False)

@@ -1,7 +1,7 @@
 
 # coding: utf-8
 
-# In[11]:
+# In[ ]:
 
 from __future__ import division, print_function
 
@@ -27,13 +27,13 @@ if (sys.argv[1] != 'pdf' and sys.argv[1] != 'png'):
 """
 
 #Typical plot parameters that make for pretty plots
-mpl.rcParams['figure.figsize'] = (36,27)
-mpl.rcParams['font.size'] = 24.0
+mpl.rcParams['figure.figsize'] = (5.75,10) #It was originally (36,27)
+mpl.rcParams['font.size'] = 7.5
 
 #Plot
 fig, axes = plt.subplots(ncols=1, nrows=3, sharey=False)
 #fig.set_size_inches(12,36)
-fig.set_size_inches(16,28)
+#fig.set_size_inches(16,28)
 
 #Making an array of all folders in order to extract the data from each folder
 data = ["STEEP_cpl_rg_off", "STEEP_cpl_rg_on", 
@@ -42,6 +42,13 @@ data = ["STEEP_cpl_rg_off", "STEEP_cpl_rg_on",
 #Colorblind-proof VPL colors for each dataset. Assigning CPL model to warm colors and CTL to cool colors.
 colors = [vpl.colors.red, vpl.colors.purple, 
           vpl.colors.orange, vpl.colors.pale_blue]
+
+#Defining plot values
+lw_plot = 1.75 #Originally 4
+fontsize_axis = 12 #originally 35
+labelsize_tick_params = 13 #Originally 28
+width_tick_params = 1.25 #Originally 3
+length_tick_params = 4 #Originally 9
 
 #Extracting and plotting the data from each folder
 for sim in range(len(data)):
@@ -77,42 +84,53 @@ for sim in range(len(data)):
     label = model + ", " + rg_evolution + r"$r_g$"
     
     #Plotting the critical semi-major axis
-    axes[0].plot(time, a_crit, lw=4, label = label, color = colors[sim])
+    axes[0].plot(time, a_crit, lw = lw_plot, 
+                 label = label, color = colors[sim])
     
     #Plotting the orbital period
-    axes[1].plot(time, orbP, lw=4, label = label, color = colors[sim])
+    axes[1].plot(time, orbP, lw = lw_plot, 
+                 label = label, color = colors[sim])
     
     #Plotting the binary eccentricity
-    axes[2].plot(time, ecc, lw=4, label = label, color = colors[sim])
+    axes[2].plot(time, ecc, lw = lw_plot, 
+                 label = label, color = colors[sim])
     
 #Looping some formats that will be the same on all three plots
 for i in range(3):
     axes[i].set_xscale("log")
-    axes[i].set_xlabel("Time [yr]", size = 35)
+    axes[i].set_xlabel("Time [yr]", size = fontsize_axis)
     axes[i].set_xlim(1e+5, time.max())
-    axes[i].tick_params(axis = 'both', which = 'major', labelsize = 35, width=3, length=9)
+    axes[i].tick_params(axis = 'both', which = 'major', 
+                        labelsize = labelsize_tick_params, 
+                        width = width_tick_params, 
+                        length = length_tick_params)
     axes[i].set_rasterization_zorder(0) 
     
 #Formats that are unique to each plot
 
 #Fomatting a_crit
-axes[0].set_ylabel("Critical Semi-Major Axis [AU]", size = 35)
-axes[0].set_ylim(ymin=0.145, ymax = 0.36)
+axes[0].set_ylabel("Critical Semi-Major Axis [AU]", 
+                   size = fontsize_axis)
+axes[0].set_ylim(ymin = 0.145, ymax = 0.36)
 axes[0].set_yticks([0.05*i + 0.15 for i in range(5)])
 axes[0].yaxis.set_major_formatter(FormatStrFormatter('%.2f'))
 axes[0].legend(loc = "upper left", ncol = 2)
 
 #Formatting the orbital period
-axes[1].set_ylabel("Orbital Period [days]", size = 35)
-axes[1].set_ylim(ymin=4.25 ,ymax=8)
+axes[1].set_ylabel("Orbital Period [days]", 
+                   size = fontsize_axis)
+axes[1].set_ylim(ymin = 4.25 ,ymax = 8)
 
 #formatting the binary eccentricity
-axes[2].set_ylabel("Eccentricity", size = 35)
-axes[2].set_ylim(ymin=-0.01 ,ymax=0.32)
+axes[2].set_ylabel("Eccentricity", 
+                   size = fontsize_axis)
+axes[2].set_ylim(ymin = -0.01 ,ymax = 0.32)
 
 fig.tight_layout()
 if (sys.argv[1] == 'pdf'):
-    plt.savefig('STEEP_CTL.pdf', bbox_inches="tight", dpi=200)
+    plt.savefig('STEEP_CTL.pdf', bbox_inches="tight", 
+                dpi = 200)
 if (sys.argv[1] == 'png'):
-    plt.savefig('STEEP_CTL.png', bbox_inches="tight")
+    plt.savefig('STEEP_CTL.png', bbox_inches="tight",
+               dpi = 200)
 

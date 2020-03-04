@@ -1,7 +1,7 @@
 
 # coding: utf-8
 
-# In[3]:
+# In[ ]:
 
 from __future__ import division, print_function
 
@@ -26,11 +26,11 @@ if (sys.argv[1] != 'pdf' and sys.argv[1] != 'png'):
 """
 
 #Typical plot parameters that make for pretty plots
-mpl.rcParams['figure.figsize'] = (18,15)
-mpl.rcParams['font.size'] = 24.0
+mpl.rcParams['figure.figsize'] = (5.75,10) #It was originally (18,15)
+mpl.rcParams['font.size'] = 11.0
 
 fig, axes = plt.subplots(ncols=1, nrows=3, sharey=False)
-fig.set_size_inches(12,21)
+#fig.set_size_inches(12,21)
 
 data = ["0pt15_StellarMass", "0pt30_StellarMass", 
 	"0pt45_StellarMass"]
@@ -42,6 +42,15 @@ lock_0pt30 = 6.288010e+15 * sec_to_yrs
 lock_0pt45 = 4.205003e+15 * sec_to_yrs
 tidal_lock_times = [lock_0pt15, lock_0pt30, lock_0pt45]
 
+#Defining plot values
+lw_plot = 2 #Originally 4
+lw_horizontal = 2 #Originally 6
+lw_vertical = lw_horizontal
+fontsize_axis = 16 #originally 35
+labelsize_tick_params = 14 #Originally 28
+width_tick_params = 1.4 #Originally 3
+length_tick_params = 5 #Originally 9
+
 for sim in range(len(data)):
     # Load data
     output = vpl.GetOutput(data[sim])
@@ -52,22 +61,34 @@ for sim in range(len(data)):
     hz_cbp_mg = output.secondary.HZLimMaxGreenhouse
     a_crit = output.secondary.CriticalSemiMajorAxis
 
-    axes[sim].plot(time, a_crit, lw=4, label = r"$a_{crit}$", color = "k", zorder = 1)
+    axes[sim].plot(time, a_crit, lw = lw_plot, 
+                   label = r"$a_{crit}$", color = "k", 
+                   zorder = 1)
     
-    axes[sim].fill_between(time, hz_cbp_rg, hz_cbp_mg, where = hz_cbp_rg <= hz_cbp_mg,
-                      color = vpl.colors.pale_blue, alpha = .5, label = "HZ", zorder = 0) # shades pale blue in hz boundaries
-    axes[sim].axvline(tidal_lock_times[sim], lw = 6, ls = "--", label = r"$P_{rot}$"
-                    + " " + r"$=$" + " " + r"$P_{orb}$", color = vpl.colors.red, zorder = 1)
-    axes[sim].axhline(max(a_crit), lw = 6, ls = "--", label = r"$a_{crit, max}$", 
-                    color = vpl.colors.orange, zorder = 2)
+    axes[sim].fill_between(time, hz_cbp_rg, hz_cbp_mg, 
+                           where = hz_cbp_rg <= hz_cbp_mg, 
+                           color = vpl.colors.pale_blue, 
+                           alpha = .5, label = "HZ", 
+                           zorder = 0) # shades pale blue in hz boundaries
+    axes[sim].axvline(tidal_lock_times[sim], lw = lw_vertical, 
+                      ls = "--", 
+                      label = r"$P_{rot}$" + " " + r"$=$" + " " + r"$P_{orb}$", 
+                      color = vpl.colors.red, 
+                      zorder = 1)
+    axes[sim].axhline(max(a_crit), lw = lw_horizontal, 
+                      ls = "--", label = r"$a_{crit, max}$", 
+                      color = vpl.colors.orange, zorder = 2)
 
     #Format
     axes[sim].set_xscale("log")
-    axes[sim].set_xlabel("Time [yr]", fontsize = 35)
+    axes[sim].set_xlabel("Time [yr]", fontsize = fontsize_axis)
     axes[sim].set_xlim(1e+7, time.max())
-    axes[sim].set_ylabel("Semi-Major Axis [AU]", fontsize = 35)
+    axes[sim].set_ylabel("Semi-Major Axis [AU]", fontsize = fontsize_axis)
     axes[sim].set_xticks([10**(i + 5) for i in range(6)])
-    axes[sim].tick_params(axis = 'both', which = 'major', labelsize = 28, width=3, length=9)
+    axes[sim].tick_params(axis = 'both', which = 'major', 
+                          labelsize = labelsize_tick_params, 
+                          width = width_tick_params, 
+                          length = length_tick_params)
     axes[sim].set_rasterization_zorder(0) 
 
 axes[0].set_ylim(0.07, 0.24)
@@ -81,6 +102,9 @@ axes[0].legend(loc = "lower left")
 
 fig.tight_layout()
 if (sys.argv[1] == 'pdf'):
-    plt.savefig('HZ_Evolution.pdf', bbox_inches="tight", dpi=200)
+    plt.savefig('HZ_Evolution.pdf', bbox_inches="tight", 
+                dpi = 200)
 if (sys.argv[1] == 'png'):
-    plt.savefig('HZ_Evolution.png', bbox_inches="tight")
+    plt.savefig('HZ_Evolution.png', bbox_inches="tight", 
+                dpi = 200)
+
