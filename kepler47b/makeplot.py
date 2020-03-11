@@ -1,8 +1,3 @@
-
-# coding: utf-8
-
-# In[ ]:
-
 from __future__ import division, print_function
 
 import matplotlib.pyplot as plt
@@ -28,9 +23,8 @@ if (sys.argv[1] != 'pdf' and sys.argv[1] != 'png'):
 """
     
 #Typical plot parameters that make for pretty plots
-mpl.rcParams['figure.figsize'] = (9,5.75) #It was originally (18,15)
-mpl.rcParams['font.size'] = 9 #Originally 19.5
-
+mpl.rcParams['figure.figsize'] = (6,3.85) #It was originally (9,5.75)
+mpl.rcParams['font.size'] = 6 #Originally 9
 # Load data
 output = vpl.GetOutput()
 
@@ -63,12 +57,12 @@ observed_cbp_semi_major_axis = 0.2956 # In AU
 observed_cbp_ecc = 0.035
 
 #Defining plot values
-lw_plot = 1.5 #Originally 3
-lw_horizontal = 1.75 #Originally 3
-fontsize_axis = 11 #originally 35
-labelsize_tick_params = 12 #Originally 24
-width_tick_params = 1 #Originally 1.5
-length_tick_params = 4 #Originally 4
+lw_plot = 1 #Originally 1.5
+lw_horizontal = 1.2 #Originally 1.75
+fontsize_axis = 6.9 #originally 11
+labelsize_tick_params = 7.5 #Originally 12
+width_tick_params = 0.3 #Originally 1
+length_tick_params = 1.3 #Originally 4
 
 
 ##Plotting the simulated and observed semi-major axis of the star on the top-left panel##

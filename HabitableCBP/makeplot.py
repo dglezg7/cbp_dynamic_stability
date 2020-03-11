@@ -26,8 +26,8 @@ if (sys.argv[1] != 'pdf' and sys.argv[1] != 'png'):
 """
 
 #Typical plot parameters that make for pretty plots
-mpl.rcParams['figure.figsize'] = (7,9.75) #It was originally (36,27) (9,6.75)
-mpl.rcParams['font.size'] = 9.0 #Originally 21.0
+mpl.rcParams['figure.figsize'] = (4.2,6) #It was originally (7,9.75)
+mpl.rcParams['font.size'] = 5.2 #Originally 9
 
 # Load data
 output = vpl.GetOutput()
@@ -52,12 +52,12 @@ acrit_color = "k" #black
 a_critMax_color = vpl.colors.orange
 
 #Defining plot values
-lw_plot = 2 #Originally 4
-lw_horizontal = 2.5 #Originally 6
-fontsize_axis = 15 #originally 35
-labelsize_tick_params = 13 #Originally 28
-width_tick_params = 1.25 #Originally 3
-length_tick_params = 4 #Originally 9
+lw_plot = 1.2 #Originally 2
+lw_horizontal = 1.5 #Originally 2.5
+fontsize_axis = 9 #originally 15
+labelsize_tick_params = 7.7 #Originally 13
+width_tick_params = 0.9 #Originally 1.25
+length_tick_params = 2.9 #Originally 4
 
 ##Plotting the insolation of the cbp on the top panel##
 axes[0].plot(time, instell_cbp_Earth, lw = lw_plot, 

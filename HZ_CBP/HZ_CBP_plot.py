@@ -26,8 +26,8 @@ if (sys.argv[1] != 'pdf' and sys.argv[1] != 'png'):
 """
 
 #Typical plot parameters that make for pretty plots
-mpl.rcParams['figure.figsize'] = (9,7.5) #It was originally (18,15)
-mpl.rcParams['font.size'] = 22.0
+mpl.rcParams['figure.figsize'] = (9,7.5) #It was originally (9,7.5)
+mpl.rcParams['font.size'] = 22.0 #It was originally 22.0
 
 fig, axes = plt.subplots(ncols=1, nrows=1, sharey=False)
 fig.set_size_inches(21,12)
@@ -177,7 +177,7 @@ axes.legend(loc = "upper left")
 
 fig.tight_layout()
 if (sys.argv[1] == 'pdf'):
-    plt.savefig('HZ_CBP.pdf', bbox_inches="tight")
+    plt.savefig('HZ_CBP.pdf', bbox_inches="tight", dpi = 200)
 if (sys.argv[1] == 'png'):
-    plt.savefig('HZ_CBP.png', bbox_inches="tight")
+    plt.savefig('HZ_CBP.png', bbox_inches="tight", dpi = 200)
 

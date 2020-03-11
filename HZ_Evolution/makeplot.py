@@ -26,8 +26,8 @@ if (sys.argv[1] != 'pdf' and sys.argv[1] != 'png'):
 """
 
 #Typical plot parameters that make for pretty plots
-mpl.rcParams['figure.figsize'] = (5.75,10) #It was originally (18,15)
-mpl.rcParams['font.size'] = 11.0
+mpl.rcParams['figure.figsize'] = (3.3,6) #It was originally (5.75,10)
+mpl.rcParams['font.size'] = 6.1 #It was originally 11.0
 
 fig, axes = plt.subplots(ncols=1, nrows=3, sharey=False)
 #fig.set_size_inches(12,21)
@@ -43,14 +43,13 @@ lock_0pt45 = 4.205003e+15 * sec_to_yrs
 tidal_lock_times = [lock_0pt15, lock_0pt30, lock_0pt45]
 
 #Defining plot values
-lw_plot = 2 #Originally 4
-lw_horizontal = 2 #Originally 6
+lw_plot = 1.1 #Originally 2
+lw_horizontal = 0.9 #Originally 2
 lw_vertical = lw_horizontal
-fontsize_axis = 16 #originally 35
-labelsize_tick_params = 14 #Originally 28
-width_tick_params = 1.4 #Originally 3
-length_tick_params = 5 #Originally 9
-
+fontsize_axis = 9.25 #originally 16
+labelsize_tick_params = 8.75 #Originally 14
+width_tick_params = 1 #Originally 1.4
+length_tick_params = 2 #Originally 5
 for sim in range(len(data)):
     # Load data
     output = vpl.GetOutput(data[sim])

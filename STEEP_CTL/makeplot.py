@@ -27,8 +27,8 @@ if (sys.argv[1] != 'pdf' and sys.argv[1] != 'png'):
 """
 
 #Typical plot parameters that make for pretty plots
-mpl.rcParams['figure.figsize'] = (5.75,10) #It was originally (36,27)
-mpl.rcParams['font.size'] = 7.5
+mpl.rcParams['figure.figsize'] = (3.45,6) #It was originally (5.75,10)
+mpl.rcParams['font.size'] = 3.8 #It was originally 7.5
 
 #Plot
 fig, axes = plt.subplots(ncols=1, nrows=3, sharey=False)
@@ -44,11 +44,11 @@ colors = [vpl.colors.red, vpl.colors.purple,
           vpl.colors.orange, vpl.colors.pale_blue]
 
 #Defining plot values
-lw_plot = 1.75 #Originally 4
-fontsize_axis = 12 #originally 35
-labelsize_tick_params = 13 #Originally 28
-width_tick_params = 1.25 #Originally 3
-length_tick_params = 4 #Originally 9
+lw_plot = 1.1 #Originally 1.75
+fontsize_axis = 7.25 #originally 12
+labelsize_tick_params = 8 #Originally 13
+width_tick_params = 0.36 #Originally 1.25
+length_tick_params = 1.1 #Originally 4
 
 #Extracting and plotting the data from each folder
 for sim in range(len(data)):
