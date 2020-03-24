@@ -26,11 +26,11 @@ if (sys.argv[1] != 'pdf' and sys.argv[1] != 'png'):
 """
 
 #Typical plot parameters that make for pretty plots
-mpl.rcParams['figure.figsize'] = (9,7.5) #It was originally (9,7.5)
-mpl.rcParams['font.size'] = 22.0 #It was originally 22.0
+mpl.rcParams['figure.figsize'] = (6,3.5) #It was originally (9,7.5)
+mpl.rcParams['font.size'] = 6.0 #It was originally 22.0
 
 fig, axes = plt.subplots(ncols=1, nrows=1, sharey=False)
-fig.set_size_inches(21,12)
+#fig.set_size_inches(21,12)
 
 # 1D Interpolations to Baraffe et al., 2015 stellar models
 baraffe2015MArr = np.array([0.1, 0.11, 0.13, 0.15, 0.17, 0.2, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0, 1.1])
@@ -148,14 +148,22 @@ a_crit1_color = vpl.colors.purple
 a_crit3_color = vpl.colors.orange
 a_crit5_color = vpl.colors.red
 
+#Defining plot values
+lw = 1 #Originally 4
+axissize = 11 #Originally 34
+labelsize = 9 #Originally 28
+width = 1 #Originally 2
+length = 4 #Originally 8
+
+
 ##Plotting the a_crit values for each binary eccentricity##
-axes.plot(min_a_crit, some_mass_values, lw=4, color = a_crit0_color, 
+axes.plot(min_a_crit, some_mass_values, lw = lw, color = a_crit0_color, 
 	  ls = "-", label = r"$a_{crit}$" + " " + r"$(e_{star} = 0.0)$", zorder = 2) #Plots a_crit boundary for e = 0.0
-axes.plot(a_crit_e_pt1, some_mass_values, lw=4, color = a_crit1_color, 
+axes.plot(a_crit_e_pt1, some_mass_values, lw = lw, color = a_crit1_color, 
           ls = "-", label = r"$a_{crit}$" + " " + r"$(e_{star} = 0.1)$", zorder = 2) #Plots a_crit boundary for e = 0.1
-axes.plot(a_crit_e_pt3, some_mass_values, lw=4, color = a_crit3_color, 
+axes.plot(a_crit_e_pt3, some_mass_values, lw = lw, color = a_crit3_color, 
           ls = "-", label = r"$a_{crit}$" + " " + r"$(e_{star} = 0.3)$", zorder = 2) #Plots a_crit boundary for e = 0.3
-axes.plot(a_crit_e_pt5, some_mass_values, lw=4, color = a_crit5_color, 
+axes.plot(a_crit_e_pt5, some_mass_values, lw = lw, color = a_crit5_color, 
           ls = "-", label = r"$a_{crit}$" + " " + r"($e_{star} = 0.5)$", zorder = 2) #Plots a_crit boundary for e = 0.5
 
 ##Plotting the habitable zone##
@@ -165,14 +173,17 @@ axes.fill_between(hz_cbp_mg, 0, some_mass_values,
                   color = "white", zorder = 1) #Prevents HZ color from appearing father from outer hz boundary
 
 #Formatting
-axes.set_xlabel("Semi-Major Axis" + " [AU] ", size = 34)
+axes.set_xlabel("Semi-Major Axis" + " [AU] ", size = axissize)
+axes.set_xlim(xmin= 0.1, xmax = 0.3)
 axes.set_xticks([0.05*i + 0.1 for i in range(5)])
 axes.get_xaxis().set_major_formatter(mticker.ScalarFormatter()) #Removes the logarithmic numbers on x-axis
 axes.get_xaxis().set_minor_formatter(mticker.NullFormatter()) #Helps with the above action
-axes.tick_params(axis = 'both', which = 'major', labelsize = 28, width=2, length=8)
-axes.set_xlim(xmin= 0.1, xmax = 0.3)
-axes.set_ylim(ymin=0.105, ymax = 0.5)
-axes.set_ylabel("Stellar Mass " + r"$[M_{\odot}]$", size = 34)
+axes.set_ylabel("Stellar Mass " + r"$[M_{\odot}]$", size = axissize)
+axes.set_ylim(ymin = 0.105, ymax = 0.5)
+axes.tick_params(axis = 'both', which = 'major', labelsize = labelsize, width = width, length = length)
+
+
+
 axes.legend(loc = "upper left")
 
 fig.tight_layout()
