@@ -29,13 +29,13 @@ Running the script.
 Expected image
 -----
 
-.. figure:: HabitableCBP.png
-   :width: 600px
-   :align: center
-   Insolation and the orbital evolution the circumbinary planet. The parameters of the binary stars
-   and the circumbinary planet were adjusted so that the circumbinary planet can achieve the highest
-   and the most variable amplitudes in its semi-major axis and eccentricity. There are three important
-   traits for the circumbinary planet to achieve these variabilities in dynamics: varying stellar masses, smallest
-   difference between the circumbinary planet's minimum semi-major axis and the binary stars'
-   maximum critical semi-major axis, and a very small initial eccentricity for the circumbinary planet.
+.. figure:: HabitableCBP.png?raw=True
+:width: 600px
+:align: center
+Insolation and the orbital evolution the circumbinary planet. The parameters of the binary stars 
+and the circumbinary planet were adjusted so that the circumbinary planet can achieve the highest 
+and the most variable amplitudes in its semi-major axis and eccentricity. There are three important 
+traits for the circumbinary planet to achieve these variabilities in dynamics: varying stellar masses, smallest 
+difference between the circumbinary planet's minimum semi-major axis and the binary stars' 
+maximum critical semi-major axis, and a very small initial eccentricity for the circumbinary planet.
 
