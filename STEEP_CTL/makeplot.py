@@ -27,13 +27,12 @@ if (sys.argv[1] != 'pdf' and sys.argv[1] != 'png'):
 """
 
 #Typical plot parameters that make for pretty plots
-mpl.rcParams['figure.figsize'] = (3.45,6) #It was originally (5.75,10)
-mpl.rcParams['font.size'] = 3.8 #It was originally 7.5
+mpl.rcParams['figure.figsize'] = (3.45,6)
+mpl.rcParams['font.size'] = 3.8
 
 #Plot
-fig, axes = plt.subplots(ncols=1, nrows=3, sharey=False)
-#fig.set_size_inches(12,36)
-#fig.set_size_inches(16,28)
+nrows = 3
+fig, axes = plt.subplots(ncols = 1, nrows = nrows, sharey=False)
 
 #Making an array of all folders in order to extract the data from each folder
 data = ["STEEP_cpl_rg_off", "STEEP_cpl_rg_on", 
@@ -44,11 +43,11 @@ colors = [vpl.colors.red, vpl.colors.purple,
           vpl.colors.orange, vpl.colors.pale_blue]
 
 #Defining plot values
-lw_plot = 1.1 #Originally 1.75
-fontsize_axis = 7.25 #originally 12
-labelsize_tick_params = 8 #Originally 13
-width_tick_params = 0.36 #Originally 1.25
-length_tick_params = 1.1 #Originally 4
+lw_plot = 1.1
+fontsize_axis = 7.25
+labelsize_tick_params = 8
+width_tick_params = 0.36
+length_tick_params = 1.1
 
 #Extracting and plotting the data from each folder
 for sim in range(len(data)):
@@ -93,18 +92,7 @@ for sim in range(len(data)):
     
     #Plotting the binary eccentricity
     axes[2].plot(time, ecc, lw = lw_plot, 
-                 label = label, color = colors[sim])
-    
-#Looping some formats that will be the same on all three plots
-for i in range(3):
-    axes[i].set_xscale("log")
-    axes[i].set_xlabel("Time [yr]", size = fontsize_axis)
-    axes[i].set_xlim(1e+5, time.max())
-    axes[i].tick_params(axis = 'both', which = 'major', 
-                        labelsize = labelsize_tick_params, 
-                        width = width_tick_params, 
-                        length = length_tick_params)
-    axes[i].set_rasterization_zorder(0) 
+                 label = label, color = colors[sim]) 
     
 #Formats that are unique to each plot
 
@@ -125,6 +113,17 @@ axes[1].set_ylim(ymin = 4.25 ,ymax = 8)
 axes[2].set_ylabel("Eccentricity", 
                    size = fontsize_axis)
 axes[2].set_ylim(ymin = -0.01 ,ymax = 0.32)
+
+#Looping some formats that will be the same on all three plots
+for n in range(nrows):
+    axes[n].set_xscale("log")
+    axes[n].set_xlabel("Time [yr]", size = fontsize_axis)
+    axes[n].set_xlim(1e+5, time.max())
+    axes[n].tick_params(axis = 'both', which = 'major', 
+                        labelsize = labelsize_tick_params, 
+                        width = width_tick_params, 
+                        length = length_tick_params)
+    axes[n].set_rasterization_zorder(0)
 
 fig.tight_layout()
 if (sys.argv[1] == 'pdf'):
