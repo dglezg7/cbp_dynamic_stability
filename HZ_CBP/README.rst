@@ -30,10 +30,8 @@ Running the script.
 Expected image
 -----
 
-.. figure:: CBP_HZ.png
-   :width: 600px
-   :align: center
-   Orbital constraints placed on circumbinary planets orbiting identical-mass binary stars while
-   showing the habitable zone for binary star systems between 0.1 to 1.0 solar masses. Each critical 
-   semi-major axis line in the plot shows how higher binary eccentricities create a higher restriction
-   in which the circumbinary planet may become dynamically stable.
+.. figure:: HZ_CBP.png?raw=True
+Orbital constraints placed on circumbinary planets orbiting identical-mass binary stars while 
+showing the habitable zone for binary star systems between 0.1 to 0.5 solar masses. Each critical 
+semi-major axis line in the plot shows how higher binary eccentricities create a higher restriction 
+in which the circumbinary planet may become dynamically stable.
