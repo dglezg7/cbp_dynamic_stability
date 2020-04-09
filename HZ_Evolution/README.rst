@@ -39,11 +39,9 @@ Then in the ``HZ_Evolution`` folder run:
 Expected image
 -----
 
-.. figure:: HZ_Evolution.png
-   :width: 600px
-   :align: center
-   Modeling equal-mass binary stars with 0.15 (top), 0.30, and 0.45 solar masses respectively.
-   Knowing the maximum critical semi-major axis helps us see how the dynamic stability limit 
-   could have affected cbp's that once could have orbited around the habitable zone and may
-   have gone unstable due to the early effects of the critcal semi-major axis.
+.. figure:: HZ_Evolution.png?raw=True
+Modeling equal-mass binary stars with 0.15 (top), 0.30, and 0.45 solar masses respectively.
+Knowing the maximum critical semi-major axis helps us see how the dynamic stability limit 
+could have affected cbp's that once could have orbited around the habitable zone and may
+have gone unstable due to the early effects of the critcal semi-major axis.
 
