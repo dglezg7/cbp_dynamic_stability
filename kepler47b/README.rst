@@ -29,10 +29,8 @@ Running the script.
 Expected image
 -----
 
-.. figure:: kepler-47b.png
-   :width: 600px
-   :align: center
-   Orbital evolution of Kepler-47 B and Kepler-47 b. In each plot we compare the simulated values to their 
-   present day observed values. We can also see how the critical semi-major axis affects raises the amplitude
-   of the circumbinary planet's semi-major axis and eccentricity as the planet approaches the dynamic stability
-   limit.
+.. figure:: kepler-47b.png?raw=True 
+Orbital evolution of Kepler-47 B and Kepler-47 b. In each plot we compare the simulated values to their 
+present day observed values. We can also see how the critical semi-major axis affects raises the amplitude 
+of the circumbinary planet's semi-major axis and eccentricity as the planet approaches the dynamic stability 
+limit.
