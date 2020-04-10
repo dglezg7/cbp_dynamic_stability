@@ -25,7 +25,7 @@ Running the script.
 
 .. code-block:: bash
 
-    python CBP_HZ_plot.py <pdf | png>
+    python3 CBP_HZ_plot.py <pdf | png>
 
 Expected image
 -----
