@@ -8,15 +8,14 @@ saModules eqtide stellar
 # Physical Parameters
 iBodyType       1           # 1 -> Star
 dMass		0.30     # Mass, negative -> Earth masses
-dRotPeriod      -0.5        # Rotation period (-1 -> days)
+dRotPeriod      -4.0        # Rotation period (-1 -> days)
 bEvolveRG       1
 dRadGyra        0.27
-dAge		1.0e6
 
 
 # Binary Parameters
 dEcc		0.3           # Binary eccentricity
-dOrbPeriod	-4.0		#Binary Orbital Period Days
+dOrbPeriod	-7.5		#Binary Orbital Period Days
 #dLongP          0.0            # Binary longitude of pericenter [deg]
 #dLL13PhiAB      0.0            # Initial binary mean anomaly [deg]
 
@@ -30,4 +29,4 @@ saTidePerts	primary   	# Body name(s) of tidal perturbers
 sStellarModel baraffe
 sMagBrakingModel matt
 
-saOutputOrder	Time HZLimRunaway HZLimMaxGreenhouse -CriticalSemiMajorAxis -RotPer Ecce -OrbPer RadGyra -SurfEnFluxTotal 
+saOutputOrder	Time HZLimRunaway HZLimMaxGreenhouse -CriticalSemiMajorAxis -RotPer Ecce -OrbPer RadGyra -SurfEnFluxTotal -LockTime

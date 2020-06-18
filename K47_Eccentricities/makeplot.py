@@ -249,6 +249,40 @@ total_lock_times = Lock_Times_Primary + Lock_Times_Secondary
 #Labeling the value of the vertical dashed line
 vline = special_ecc[0]
 
+#Eccentrcity in which K47 b begins inside acrit according to Holman & Wiegert's a_crit equation
+
+a_star = 0.080 #AU, always 7.0 days
+a_crit = 0.2956 #AU, which is also a_cbp
+
+a_ratio = a_crit/a_star
+m1 = 1.043 # Solar masses, mass of primary star
+m2 = 0.362 # Solar masses, mass of secondary star
+mu = m2/(m1+m2)
+c = 1.60 +4.21*mu -5.09*mu**2 - a_ratio
+b = 5.1 - 4.27*mu
+a = -2.22 + 4.61*mu**2
+
+d = b**2 - 4*a*c # discriminant
+
+if d < 0:
+    print("The Holaman & Wiegert equation has no real solution")
+elif d == 0:
+    x = (-b+np.sqrt(d))/2*a
+    print("The Holaman & Wiegert equation has one solutions: ", x)
+    if x >= 0 and x < 1:
+        e_crit = x
+else:
+    x1 = (-b+np.sqrt(d))/(2*a)
+    x2 = (-b-np.sqrt(d))/(2*a)
+    print("The Holaman & Wiegert equation has two solutions: ", x1, " and", x2)
+    if x1 >= 0 and x1 < 1:
+        e_crit = x1
+    if x2 >= 0 and x2 < 1:
+        e_crit = x2    
+        
+e_crit = round(e_crit, 2)
+print("e_crit:", e_crit)
+
 #Plotting maximum difference between a_crit and a_cbp over initial binary eccentricity
 axes[0].plot(eccentricity, a_crit_minus_a_cbp,
             lw = lw_plot, color = color, ls = "-",
@@ -269,15 +303,18 @@ axes[0].legend(loc = "lower right")
 #Plotting the time in which the difference between a_crit and a_cbp reached it maximum
 axes[1].plot(special_ecc, time_a_crit_equals_a_cbp,
             lw = lw_plot, color = color, ls = "-",
-            label = "Time " + r"$a_{crit} = a_{CBP}$")
+            label = r"$a_{crit} = a_{CBP}$")
 axes[1].axvline(vline, lw = lw_vline, color = "k", 
                 ls = "--", label = r"$e_0 = $" + str(vline))
+axes[1].axvline(e_crit, lw = lw_vline, color = vpl.colors.purple, 
+                ls = "--", label = r"$e_{crit} = $" + str(e_crit))
 
 #Format
 axes[1].set_ylim(min(time_a_crit_equals_a_cbp), 
                  max(time_a_crit_equals_a_cbp))
 axes[1].set_ylabel("Instability Timescale" + " [Myr]", 
                    fontsize = fontsize_axis)
+axes[1].legend(loc = (0.4, 0.58))
 
 
 #Plotting Tidal-lock times of the primary and secondary star
@@ -297,7 +334,7 @@ axes[2].legend(loc = "upper right")
 
 #Looping some formats that will be the same on all three plots
 for n in range(nrows):
-    axes[n].set_xlabel("Eccentricity", fontsize = fontsize_axis)
+    axes[n].set_xlabel("Initial Eccentricity", fontsize = fontsize_axis)
     axes[n].set_xlim(0.1, 0.5)
     axes[n].set_xticks([0.05*i + 0.1 for i in range(9)])
     axes[n].tick_params(axis = 'both', which = 'major', 
@@ -319,4 +356,3 @@ if (sys.argv[1] == 'png'):
 end_time = datetime.now()
 print(end_time)
 print('Runtime: {}'.format(end_time - start_time))
-

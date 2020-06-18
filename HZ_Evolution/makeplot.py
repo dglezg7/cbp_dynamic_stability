@@ -34,13 +34,6 @@ fig, axes = plt.subplots(ncols=1, nrows=3, sharey=False)
 data = ["0pt15_StellarMass", "0pt30_StellarMass", 
 	"0pt45_StellarMass"]
 
-#Time (in seconds) when body stars tidally locked (identical stars lock at the same time)
-sec_to_yrs = (3600*24*365)**(-1)
-lock_0pt15 = 1.062805e+16 * sec_to_yrs
-lock_0pt30 = 6.288010e+15 * sec_to_yrs
-lock_0pt45 = 4.205003e+15 * sec_to_yrs
-tidal_lock_times = [lock_0pt15, lock_0pt30, lock_0pt45]
-
 #Defining plot values
 lw_plot = 1.1
 lw_horizontal = 0.9
@@ -58,6 +51,17 @@ for sim in range(len(data)):
     hz_cbp_rg = output.secondary.HZLimRunaway
     hz_cbp_mg = output.secondary.HZLimMaxGreenhouse
     a_crit = output.secondary.CriticalSemiMajorAxis
+    LockTime = output.secondary.LockTime
+    for t in range(len(a_crit)):
+        if a_crit[t] == max(a_crit):
+            t_max = time[t] # Time in which max(a_crit) occurred
+            break
+    if LockTime[-1] < 0:
+        LockTime = 0
+        print("The stars of " + data[sim] + " never tidally locked during the evolution.")
+    else:
+        LockTime = LockTime[-1]*1e-6 # converts from Myr to yr
+        print("LockTime of " + data[sim] + ":",LockTime)
 
     axes[sim].plot(time, a_crit, lw = lw_plot, 
                    label = r"$a_{crit}$", color = "k", 
@@ -68,11 +72,18 @@ for sim in range(len(data)):
                            color = vpl.colors.pale_blue, 
                            alpha = .5, label = "HZ", 
                            zorder = 0, rasterized = True) # shades pale blue in hz boundaries
-    axes[sim].axvline(tidal_lock_times[sim], lw = lw_vertical, 
-                      ls = "--", 
-                      label = r"$P_{rot}$" + " " + r"$=$" + " " + r"$P_{orb}$", 
-                      color = vpl.colors.red, 
-                      zorder = 1, rasterized = True)
+    if LockTime > 0:
+        axes[sim].axvline(LockTime, lw = lw_vertical, 
+                          ls = "--", 
+                          label = r"$P_{rot}$" + " " + r"$=$" + " " + r"$P_{orb}$", 
+                          color = vpl.colors.red, 
+                          zorder = 1, rasterized = True)
+    else:
+        axes[sim].axvline(t_max, lw = lw_vertical, 
+                          ls = "--", 
+                          label = r"$t(a_{crit,max})$", 
+                          color = vpl.colors.red, 
+                          zorder = 1, rasterized = True)
     axes[sim].axhline(max(a_crit), lw = lw_horizontal, 
                       ls = "--", label = r"$a_{crit, max}$", 
                       color = vpl.colors.orange, zorder = 2, rasterized = True)

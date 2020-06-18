@@ -127,9 +127,9 @@ for n in range(nrows):
 
 fig.tight_layout()
 if (sys.argv[1] == 'pdf'):
-    plt.savefig('STEEP_CTL.pdf', bbox_inches="tight", 
+    plt.savefig('STEEP.pdf', bbox_inches="tight", 
                 dpi = 200)
 if (sys.argv[1] == 'png'):
-    plt.savefig('STEEP_CTL.png', bbox_inches="tight",
+    plt.savefig('STEEP.png', bbox_inches="tight",
                dpi = 200)
 
