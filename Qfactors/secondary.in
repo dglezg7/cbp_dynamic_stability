@@ -1,0 +1,34 @@
+# Secondary star: Kepler 47B
+# Parameters from Leung & Lee (2013)
+sName		secondary		# Body's name
+sOutFile	K47_Q1e4.secondary.forward
+saModules binary eqtide stellar
+#Place "binary" before "eqtide" to turn on cbp
+
+# Physical Parameters
+iBodyType       1           # 1 -> Star
+dMass		0.362     # Mass, negative -> Earth masses
+dRotPeriod      -4.0        # Rotation period (-1 -> days)
+bEvolveRG       1
+dRadGyra        0.27
+dAge		1.0e6
+
+
+# Binary Parameters
+dEcc		0.2           # Binary eccentricity
+dOrbPeriod	-7.0		#Binary Orbital Period Days
+#dLongP          0.0            # Binary longitude of pericenter [deg]
+#dLL13PhiAB      0.0            # Initial binary mean anomaly [deg]
+
+# EQTIDE Parameters
+dTidalQ			1e4
+#dTidalTau		3.17e-09  # Tidal time lag
+dK2		0.5		# Love number of degree 2
+dMaxLockDiff    0.01
+saTidePerts	primary   	# Body name(s) of tidal perturbers
+
+# Stellar param
+sStellarModel baraffe
+sMagBrakingModel matt
+
+saOutputOrder	Time -TotEn -TotAngMom -Semim -Radius -RotPer Ecce -OrbPer RadGyra -SurfEnFluxTotal -CriticalSemiMajorAxis

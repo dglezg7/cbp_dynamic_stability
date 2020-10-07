@@ -28,10 +28,11 @@ To create the data (make sure you have at least the python3 version), you must f
 
     python K47_Eccentricities.py
 
-If you would like to have audio played on the K47_Eccentricities.py script, move any of the desired .wav files from 
-the K47_Eccentrcities/audio/DesiredLanguage to the K47_Eccentricities directory. In order for the audio to play, you
-must move the .wav files before playing the script. You may also stop and play the K47_Eccentricities.py script at 
-any time and continue to run the script again from the most recently incomplete simulation.
+If you would like to have audio played on the K47_tEccentricities.py script, move any of the desired .wav files from 
+the audio/DesiredLanguage to the K47_Eccentricities directory. In order for the audio to play, you must move the .wav 
+files before playing the script. You are also free to create your own .wav files and input them into the K47_Eccentricities
+directory we well. You may also stop and play the K47_Eccentricities.py script at any time and continue to run the script 
+again from the most recently incomplete simulation.
 
 When you have at least a few data points or when the previous script is finished, you may run in another terminal:  
 

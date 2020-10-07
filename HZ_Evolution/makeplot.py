@@ -33,6 +33,8 @@ fig, axes = plt.subplots(ncols=1, nrows=3, sharey=False)
 
 data = ["0pt15_StellarMass", "0pt30_StellarMass", 
 	"0pt45_StellarMass"]
+stellar_mass = ["0.15", "0.30", "0.45"] #Solar mass label
+stellar_mass = [x + r"$M_{\odot}$" for x in stellar_mass]
 
 #Defining plot values
 lw_plot = 1.1
@@ -56,13 +58,14 @@ for sim in range(len(data)):
         if a_crit[t] == max(a_crit):
             t_max = time[t] # Time in which max(a_crit) occurred
             break
+    
     if LockTime[-1] < 0:
         LockTime = 0
         print("The stars of " + data[sim] + " never tidally locked during the evolution.")
     else:
         LockTime = LockTime[-1]*1e-6 # converts from Myr to yr
         print("LockTime of " + data[sim] + ":",LockTime)
-
+    
     axes[sim].plot(time, a_crit, lw = lw_plot, 
                    label = r"$a_{crit}$", color = "k", 
                    zorder = 1, rasterized = True)
@@ -72,6 +75,7 @@ for sim in range(len(data)):
                            color = vpl.colors.pale_blue, 
                            alpha = .5, label = "HZ", 
                            zorder = 0, rasterized = True) # shades pale blue in hz boundaries
+    
     if LockTime > 0:
         axes[sim].axvline(LockTime, lw = lw_vertical, 
                           ls = "--", 
@@ -84,9 +88,9 @@ for sim in range(len(data)):
                           label = r"$t(a_{crit,max})$", 
                           color = vpl.colors.red, 
                           zorder = 1, rasterized = True)
-    axes[sim].axhline(max(a_crit), lw = lw_horizontal, 
-                      ls = "--", label = r"$a_{crit, max}$", 
-                      color = vpl.colors.orange, zorder = 2, rasterized = True)
+        axes[sim].axhline(max(a_crit), lw = lw_horizontal, 
+                          ls = "--", label = r"$a_{crit, max}$", 
+                          color = vpl.colors.orange, zorder = 2, rasterized = True)
 
     #Format
     axes[sim].set_xscale("log")
@@ -97,7 +101,9 @@ for sim in range(len(data)):
     axes[sim].tick_params(axis = 'both', which = 'major', 
                           labelsize = labelsize_tick_params, 
                           width = width_tick_params, 
-                          length = length_tick_params) 
+                          length = length_tick_params)
+    axes[sim].annotate(stellar_mass[sim], (0.05, 0.05), 
+                       xycoords = 'axes fraction', fontsize = 15)
 
 #Individual Formatting
 axes[0].set_ylim(0.07, 0.24)
@@ -107,7 +113,7 @@ axes[1].set_yticks([0.05*i + 0.15 for i in range(5)])
 axes[2].set_ylim(0.14, 0.55)
 axes[2].set_yticks([0.10*i + 0.15 for i in range(5)])
 
-axes[0].legend(loc = "lower left")
+axes[2].legend(loc = "upper left")
 
 for sim in range(len(data)):
     axes[sim].set_rasterization_zorder(0)
