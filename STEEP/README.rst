@@ -36,7 +36,7 @@ Then in the ``STEEP_CTL`` folder run:
 Expected image
 -----
 
-.. figure:: STEEP_CTL.png?raw=True 
+.. figure:: STEEP.png?raw=True 
 In solid lines we have the CPL model and in dashed lines the CTL model. The "bluer" colors are the 
 simulations with radius of gyration evolution turned on while the "redder" colors are simulations 
 with radius of gyration evolution turned off, that is, the radius of gyration is stays as a constant.
