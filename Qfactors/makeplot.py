@@ -95,25 +95,25 @@ for sim in range(len(data)):
 #Fomatting a_crit
 axes[0].set_ylabel("Critical Semi-Major Axis [AU]", 
                    size = fontsize_axis)
-axes[0].set_ylim(ymin = 0.175, ymax = 0.28)
+axes[0].set_ylim(ymin = 0.145, ymax = 0.30)
 axes[0].yaxis.set_major_formatter(FormatStrFormatter('%.2f'))
-axes[0].legend(loc = "upper left", ncol = 2)
+axes[1].legend(loc = "upper right", ncol = 3)
 
 #Formatting the orbital period
 axes[1].set_ylabel("Orbital Period [days]", 
                    size = fontsize_axis)
-axes[1].set_ylim(ymin = 6.7 ,ymax = 7.5)
+axes[1].set_ylim(ymin = 3.4 ,ymax = 8.0)
 
 #formatting the binary eccentricity
 axes[2].set_ylabel("Eccentricity", 
                    size = fontsize_axis)
-axes[2].set_ylim(ymin = -0.01 ,ymax = 0.21)
+axes[2].set_ylim(ymin = -0.01 ,ymax = 0.31)
 
 #Looping some formats that will be the same on all three plots
 for n in range(nrows):
     axes[n].set_xscale("log")
     axes[n].set_xlabel("Time [yr]", size = fontsize_axis)
-    axes[n].set_xlim(1e+5, time.max())
+    axes[n].set_xlim(1e+4, time.max())
     axes[n].tick_params(axis = 'both', which = 'major', 
                         labelsize = labelsize_tick_params, 
                         width = width_tick_params, 
