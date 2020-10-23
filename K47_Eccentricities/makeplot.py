@@ -314,7 +314,7 @@ axes[1].set_ylim(min(time_a_crit_equals_a_cbp),
                  max(time_a_crit_equals_a_cbp))
 axes[1].set_ylabel("Instability Timescale" + " [Myr]", 
                    fontsize = fontsize_axis)
-axes[1].legend(loc = (0.4, 0.58))
+axes[1].legend(loc = (0.42, 0.58))
 
 
 #Plotting Tidal-lock times of the primary and secondary star
