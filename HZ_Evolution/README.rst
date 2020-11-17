@@ -18,7 +18,7 @@ affect the habitable of binary stars.
 **Date**              01/14/19
 **Author**            David Graham
 **Modules**           eqtide stellar
-**Approx. runtime**   6 min total
+**Approx. runtime**   12 min total
 ===================   ============
  
 Running the script.
